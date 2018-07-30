@@ -5,18 +5,20 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { ArtViewerComponent } from './components/art-viewer/art-viewer.component';
-
+import { ArtViewer2Component } from './components/art-viewer2/art-viewer2.component';
+import {AnimatorService} from './services/animator.service'
 
 @NgModule({
   declarations: [
     AppComponent,
-    ArtViewerComponent
+    ArtViewerComponent,
+    ArtViewer2Component
   ],
   imports: [
     BrowserModule,
     FormsModule
   ],
-  providers: [SpeechRecognitionService],
+  providers: [SpeechRecognitionService, AnimatorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

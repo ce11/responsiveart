@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { SpeechRecognitionServiceService } from './speech-recognition-service.service';
+import { SpeechRecognitionService } from './speech-recognition-service.service';
 
 describe('SpeechRecognitionServiceService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [SpeechRecognitionServiceService]
+      providers: [SpeechRecognitionService]
     });
   });
 
-  it('should be created', inject([SpeechRecognitionServiceService], (service: SpeechRecognitionServiceService) => {
+  it('should be created', inject([SpeechRecognitionService], (service: SpeechRecognitionService) => {
     expect(service).toBeTruthy();
   }));
 });

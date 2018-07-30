@@ -64,7 +64,7 @@ export class ArtViewerComponent implements OnInit, OnDestroy, AfterViewInit {
     this.width = window.innerWidth;
     this.height = window.innerHeight;
     console.log(this.height)
-    this.totalPaints = this.width / 50;
+    this.totalPaints = this.width / 45;
     this.paint = []
     this.activateSpeechSearchMovie();
   }
@@ -81,22 +81,22 @@ export class ArtViewerComponent implements OnInit, OnDestroy, AfterViewInit {
       .subscribe(
       //listener
       (value) => {
-        console.log(value)
         var parts = value.split(" ");
         console.log(parts)
-        parts.forEach(part=>{
+        for (let part of parts){
           if(this.cues.hasOwnProperty(part.toLowerCase())){
             let cue = this.cues[part.toLowerCase()]
             this.initPaint(cue.interval, cue.color)
             this.initAudio(part)
             this.speechRecognitionService.DestroySpeechObject();
+            break;
             // setTimeout(()=>{
             //   console.log('back on line!')
             //   this.audioPlayer.nativeElement.pause()
             //   // this.stopPaint();
             // }, 10000);
           }
-        })
+        }
       },
       //error
       (err) => {
@@ -138,7 +138,7 @@ export class ArtViewerComponent implements OnInit, OnDestroy, AfterViewInit {
     //Try 50 times
     var i = 50;
     while (i > 0) {
-      this.size = Math.random() * this.size + 10;
+      this.size = Math.random() * this.size + 5;
       var x = Math.random() * this.width;
       var found = false;
       //Dont Allow drips ontop of each other (Overtaking drops destroy the prettyness)
