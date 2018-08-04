@@ -11,7 +11,7 @@ export class ArtViewer2Component implements AfterViewInit {
   constructor(private animator : AnimatorService) { }
 
   ngAfterViewInit() {
-    let anim :any = this.animator.createAnim("circle", this.canvas, this.colors[0], 20);
+    let anim :any = this.animator.createAnim("bricks", this.canvas, this.colors[0], 20);
     anim.start(anim, ()=>{
       console.log('------------done')
     })
