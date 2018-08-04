@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { SpeechRecognitionService } from '../../services/speech-recognition-service.service';
 import { ViewChild, ElementRef } from '@angular/core';
-
+import{cues} from '../../data/cues'
 @Component({
   selector: 'app-art-viewer',
   templateUrl: './art-viewer.component.html',
@@ -10,40 +10,6 @@ import { ViewChild, ElementRef } from '@angular/core';
 
 export class ArtViewerComponent implements OnInit, OnDestroy, AfterViewInit {
   audioBaseUrl= "https://s3.us-east-2.amazonaws.com/audio-art/"
-  cues = {
-    "energetic":{
-      "color":"#ff7b00",
-      "interval":5
-    },
-    "calm":{
-      "color":"#02dd05",
-      "interval":1
-    },
-    "focused":{
-      "color":"#0090ea",
-      "interval":3
-    },
-    "confused":{
-      "color":"#919191",
-      "interval":2
-    },
-    "sad":{
-      "color":"#a400c9",
-      "interval":1
-    },
-    "angry":{
-      "color":"#ff0000",
-      "interval":4
-    },
-    "playful":{
-      "color":"#fff600",
-      "interval":4
-    },
-    "nervous":{
-      "color":"#000000",
-      "interval":3
-    }
-  }
 
   speechData: string;
   @ViewChild('paintcanvas') myCanvas: ElementRef;
@@ -84,8 +50,8 @@ export class ArtViewerComponent implements OnInit, OnDestroy, AfterViewInit {
         var parts = value.split(" ");
         console.log(parts)
         for (let part of parts){
-          if(this.cues.hasOwnProperty(part.toLowerCase())){
-            let cue = this.cues[part.toLowerCase()]
+          if(cues.hasOwnProperty(part.toLowerCase())){
+            let cue = cues[part.toLowerCase()]
             this.initPaint(cue.interval, cue.color)
             this.initAudio(part)
             this.speechRecognitionService.DestroySpeechObject();

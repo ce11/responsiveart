@@ -72,28 +72,6 @@ export class AnimatorService {
       if (anim.rows[i].cooldown > 0)
         anim.rows[i].cooldown--;
     }
-    /*
-    for (let i = 0; i < anim.nRows; i++) {
-      // if a row is full continue
-      if (anim.rows[i].currHeight > anim.height) {
-        continue;
-      }
-      // cooldown if brick was just launched
-      if (anim.rows[i].cooldown > 0) {
-        anim.rows[i].cooldown--;
-      } else {  // randomly add brick if last brick is below dropping height
-        if (Math.random() > 0.95) {
-          anim.bricks.push({
-            x: anim.width * i / anim.nRows,
-            y: 0,
-            width: anim.width / anim.nRows,
-            height: anim.brickHeight,
-            row: i
-          })
-          anim.rows[i].cooldown += 3
-        }
-      }
-    }*/
     // redraw bricks
     for (let i = 0; i < anim.bricks.length; i++) {
       let currBrick = anim.bricks[i];
@@ -171,7 +149,6 @@ export class AnimatorService {
     let anim = this.createAnimTemplate(canvas, color, delay)
     anim.pts = [];
     let npts = 20
-    // x: this.getRandomInt(anim.width * i / this.segs, anim.width * (i + 1) / this.segs),
 
     for (let i = 0; i < npts; i++) {
       let pt = {
