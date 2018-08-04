@@ -36,14 +36,14 @@ export class AnimatorService {
     let anim = this.createAnimTemplate(canvas, color, delay);
     anim.rows = [];
     anim.nRows = 20;
-    anim.dy = 10;
+    anim.dy = 20;
     for (let i = 0; i < anim.nRows; i++) {
       anim.rows.push({
         currHeight: 0,
         cooldown: 0
       })
     }
-    anim.brickHeight = 10;
+    anim.brickHeight = 20;
     anim.start = this.startBricksAnim;
     anim.bricks = [];
     return anim;
@@ -58,7 +58,7 @@ export class AnimatorService {
           done = 0;
           anim.bricks.push({
             x: anim.width * i / anim.nRows,
-            y: 0,
+            y: -20,
             width: anim.width / anim.nRows,
             height: anim.brickHeight,
             row: i
@@ -75,7 +75,7 @@ export class AnimatorService {
     // redraw bricks
     for (let i = 0; i < anim.bricks.length; i++) {
       let currBrick = anim.bricks[i];
-      if (anim.height - currBrick.y - anim.brickHeight - anim.dy < anim.rows[currBrick.row].currHeight) {
+      if (anim.height - currBrick.y - anim.dy < anim.rows[currBrick.row].currHeight) {
         // remove brick;
         currBrick.inactive = true;
         anim.rows[currBrick.row].currHeight += anim.brickHeight;
@@ -113,7 +113,7 @@ export class AnimatorService {
 
     anim.pts = [
       {
-        x: this.getRandomInt(-100, -100), y: 0, dx: 5
+        x: -200, y: 0, dx: 5
       },
       {
         x: this.getRandomInt(-30, -10), y: anim.height, dx: 5
@@ -193,12 +193,12 @@ export class AnimatorService {
     anim.ctx.shadowOffsetX = 2;
     anim.ctx.shadowOffsetY = 2;
     anim.pts = [];
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 60; i++) {
       let pt = {};
       if (i == 0)
         pt = { x: 0, y: 0, c: 20, dy: Math.random() * 8 + 2 };
       else
-        pt = { x: anim.width * (i + 1) / 20, y: 0, c: 20, dy: Math.random() * 8 + 2 };
+        pt = { x: anim.width * (i + 1) / 20, y: 0, c: 40, dy: Math.random() * 3 + 2 };
       anim.pts.push(pt);
     }
     anim.start = this.dripStart;

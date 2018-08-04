@@ -17,11 +17,15 @@ export class ArtViewer2Component implements AfterViewInit {
 
   ngAfterViewInit() {
     this.activateSpeechSearchMovie();
+    var msg = new SpeechSynthesisUtterance("how are you feeling?");
+    (<any>window).speechSynthesis.speak(msg)
   }
   animate(cue:any){
-    let anim :any = this.animator.createAnim(cue.anim, this.canvas, cue.color, 20);
+    let anim :any = this.animator.createAnim(cue.anim, this.canvas, cue.color, cue.interval);
     anim.start(anim, ()=>{
-      setTimeout(()=>{window.location.reload();}, 20000)
+      setTimeout(()=>{
+        window.location.reload();
+      }, 20000)
       console.log('------------done')
     })
   }
